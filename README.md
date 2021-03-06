@@ -1,11 +1,10 @@
 # Symfony5
 「PHPフレームワーク　Symfony4入門」を読みながらSymfony5環境でやってみた
 
-<h1>実行環境）</h1>
-<h2>Symfony</h2>
-<p>Version              5.2.4</p>
-<h2>PHP</h2>
-<p>Version              8.0.3</p>
+## 実行環境）
+<p>Symfony 5.2.4</p>
+<p>PHP  8.0.3</p>
+
 
 うまくいかなかった点）
 1.コマンドライン
