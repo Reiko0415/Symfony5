@@ -3,12 +3,27 @@
 namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
-
+use Symfony\Component\Routing\Annotation\Route;
 
 class HelloController 
 {
+
+    /**
+     * @Route("/hello" , name="hello")
+     */
+
     public function index()
     {
-        return new Response('Hello Symfony!');
+        $result = <<< EOM
+        <html>
+            <head><title>Hello</title></head>
+            <body>
+                <h1>Hello Symfony!</h1>
+                <p>This is symfony sample page.</p>
+            </body>
+        </html>
+        EOM;
+
+        return new Response($result);
     }
 }
