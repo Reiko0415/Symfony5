@@ -7,7 +7,7 @@
 
 
 ## うまくいかなかった点
-### 1.コマンドライン
+<p> 1.コマンドライン
 　　　 php bin/console:run
  と入力すると
 　Command "server:run" is not defined.
@@ -26,7 +26,7 @@
   そのため
   php -S localhost:8001 -t public
   とする。
-  
+ </p> 
   
 
 
