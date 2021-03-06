@@ -1,2 +1,4 @@
 # Symfony5
-Symfony5をやってみた
+PHPフレームワーク　Symfony4入門を読みながらSymfony5環境でやってみた
+
+
