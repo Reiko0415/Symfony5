@@ -6,8 +6,8 @@
 <p>PHP  8.0.3</p>
 
 
-うまくいかなかった点）
-1.コマンドライン
+## うまくいかなかった点
+### 1.コマンドライン
 　　　 php bin/console:run
  と入力すると
 　Command "server:run" is not defined.
