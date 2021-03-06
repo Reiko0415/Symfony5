@@ -6,7 +6,7 @@
 <p>PHP  8.0.3</p>
 
 
-## うまくいかなかった点
+## うまくいかなかったところ
 <ol>
  <li> php bin/console:run</li>
 　Command "server:run" is not defined.
