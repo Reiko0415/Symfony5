@@ -7,8 +7,8 @@
 
 
 ## うまくいかなかった点
-<p> 1.コマンドライン
-　　　 php bin/console:run
+<ol>
+ </li> php bin/console:run</li>
  と入力すると
 　Command "server:run" is not defined.
   Did you mean one of these?
@@ -18,8 +18,8 @@
   となる
 
 2.コマンドライン
-　　composer require symfony/web-server-bundle --dev
-  と入力すると
+　<li>composer require symfony/web-server-bundle --dev</li>
+  
    [InvalidArgumentException]
   Could not find package symfony/web-server-bundle in a version matching 5.2.*
   となる。
@@ -27,7 +27,7 @@
   php -S localhost:8001 -t public
   とする。
  </p> 
-  
+  </ol>
 
 
 
