@@ -2,26 +2,13 @@
 「PHPフレームワーク　Symfony4入門」を読みながらSymfony5環境でやってみた
 
 実行環境）
--------------------- ---------------------------------
   Symfony
- -------------------- ---------------------------------
   Version              5.2.4
   Long-Term Support    No
   End of maintenance   07/2021 (in +147 days)
   End of life          07/2021 (in +147 days)
- -------------------- ---------------------------------
-  Kernel
- -------------------- ---------------------------------
-  Type                 App\Kernel
-  Environment          dev
-  Debug                true
-  Charset              UTF-8
-  Cache directory      ./var/cache/dev (6.3 MiB)
-  Build directory      ./var/cache/dev (6.3 MiB)
-  Log directory        ./var/log (17 KiB)
- -------------------- ---------------------------------
+
   PHP
- -------------------- ---------------------------------
   Version              8.0.3
   Architecture         64 bits
   Intl locale          n/a
@@ -29,7 +16,6 @@
   OPcache              false
   APCu                 false
   Xdebug               false
- -------------------- ---------------------------------
 
 うまくいかなかった点）
 1.コマンドライン
