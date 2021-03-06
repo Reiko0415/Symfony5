@@ -9,15 +9,13 @@
 ## うまくいかなかった点
 <ol>
  </li> php bin/console:run</li>
- と入力すると
 　Command "server:run" is not defined.
   Did you mean one of these?
       dbal:run-sql
       server:dump
       server:log
   となる
-
-2.コマンドライン
+  
 　<li>composer require symfony/web-server-bundle --dev</li>
   
    [InvalidArgumentException]
