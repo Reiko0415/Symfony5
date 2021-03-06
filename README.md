@@ -1,21 +1,11 @@
 # Symfony5
 「PHPフレームワーク　Symfony4入門」を読みながらSymfony5環境でやってみた
 
-実行環境）
-  Symfony
-  Version              5.2.4
-  Long-Term Support    No
-  End of maintenance   07/2021 (in +147 days)
-  End of life          07/2021 (in +147 days)
-
-  PHP
-  Version              8.0.3
-  Architecture         64 bits
-  Intl locale          n/a
-  Timezone             UTC (2021-03-06T05:48:37+00:00)
-  OPcache              false
-  APCu                 false
-  Xdebug               false
+<h1>実行環境）</h1>
+<h2>Symfony</h2>
+<p>Version              5.2.4</p>
+<h2>PHP</h2>
+<p>Version              8.0.3</p>
 
 うまくいかなかった点）
 1.コマンドライン
