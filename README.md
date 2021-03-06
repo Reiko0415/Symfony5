@@ -1,7 +1,7 @@
 # Symfony5
 「PHPフレームワーク　Symfony4入門」を読みながらSymfony5環境でやってみた
 
-## 実行環境）
+## 実行環境
 <p>Symfony 5.2.4</p>
 <p>PHP  8.0.3</p>
 
