@@ -8,7 +8,7 @@
 
 ## うまくいかなかった点
 <ol>
- </li> php bin/console:run</li>
+ <li> php bin/console:run</li>
 　Command "server:run" is not defined.
   Did you mean one of these?
       dbal:run-sql
