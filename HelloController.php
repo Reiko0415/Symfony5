@@ -10,19 +10,15 @@ class HelloController extends AbstractController
 {
 
     /**
-     * @Route("/hello" , name="hello")
+     * @Route("/hello/{name}/{pass}" , name="hello")
      */
 
-    public function index()
+    public function index($name,$pass)
     {
         $result = '<html><body>';
-        $result .= '<h1>Subscribed Services</h1>';
-        $result .= '<ol>';
-        $arr = $this->getSubscribedServices();
-        foreach($arr as $key => $value){
-            $result .= '<li>' . $key .'</li>';
-        }
-        $result .= '</ol>';
+        $result .= '<h1>Parameters</h1>';
+        $result .= '<p> name:' . $name . '</p>';
+        $result .= '<p> pass:' . $name . '</p>';
         $result .= '</body></html>';
 
         return new Response($result);
