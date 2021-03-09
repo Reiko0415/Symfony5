@@ -13,7 +13,7 @@ class HelloController extends AbstractController
      * @Route("/hello/{name}/{pass}" , name="hello")
      */
 
-    public function index($name,$pass)
+    public function index($name='(noname)',$pass='(no pass)')
     {
         $result = '<html><body>';
         $result .= '<h1>Parameters</h1>';
