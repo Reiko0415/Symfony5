@@ -18,12 +18,12 @@
   
 　<li>composer require symfony/web-server-bundle --dev</li>
   
-   [InvalidArgumentException]
+  <p> [InvalidArgumentException]
   Could not find package symfony/web-server-bundle in a version matching 5.2.*
-  となる。
-  そのため
+  となる。</p>
+  <p>そのため
   php -S localhost:8001 -t public
-  とする。
+  とする。</p>
  </ol>
 
 
