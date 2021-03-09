@@ -3,22 +3,26 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 class HelloController extends AbstractController
 {
 
     /**
-     * @Route("/hello/{name}/{pass}" , name="hello")
+     * @Route("/hello" , name="hello")
      */
 
-    public function index($name='(noname)',$pass='(no pass)')
+    public function index(Request $request)
     {
+        $name = $request->get('name');
+        $pass = $request->get('pass'); 
         $result = '<html><body>';
         $result .= '<h1>Parameters</h1>';
         $result .= '<p> name:' . $name . '</p>';
-        $result .= '<p> pass:' . $name . '</p>';
+        $result .= '<p> pass:' . $pass . '</p>';
         $result .= '</body></html>';
 
         return new Response($result);
