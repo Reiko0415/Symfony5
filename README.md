@@ -6,7 +6,7 @@
 <p>PHP  8.0.3</p>
 
 
-## 環境設定の注意点
+## 注意点
 <ol>
  <li> php bin/console:run</li>
  <p>Command "server:run" is not defined. 
