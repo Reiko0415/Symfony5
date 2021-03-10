@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -18,12 +19,11 @@ class HelloController extends AbstractController
 
     public function index(Request $request)
     {
-        $result = '<html><body>';
-        $result .= '<h1>Parameters</h1>';
-        $result .= '<p>This is index page. </p>';
-        $result .= '</body></html>';
-
-        return new Response($result);
+       $data = array(
+           'name'=>array('first'=>'Taro','second'=>'Yamada'),
+                    'age'=>36,'mail'=>'taro@yamada.kun'
+       );
+       return new JsonResponse($data);
     }
 
     /**
