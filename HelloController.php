@@ -7,10 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\Serializer\Encoder\XmlEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-
 class HelloController extends AbstractController
 {
 
@@ -20,19 +16,53 @@ class HelloController extends AbstractController
 
     public function index(Request $request)
     {
-        $encoders = array(new XmlEncoder());
-        $normalizers = array(new ObjectNormalizer());
-        $serializer = new Serializer($normalizers,$encoders);
+        $content = <<< EOM
+        <html><head><title>Hello</title></head>
+        <body><h1>Hello!</h1>
+        <p>this is Symphony sample page.</p>
+        </body></html>
+        EOM;
 
-       $data = array(
-           'name'=>array('first'=>'Taro','second'=>'Yamada'),
-                    'age'=>36,'mail'=>'taro@yamada.kun'
-       );
-       $response = new Response();
-       $response->headers->set('Content-Type','xml');
-       $result = $serializer->serialize($data,'xml');
-       $response->setContent($result);
-       return $response;
+        $response = new Response(
+            $content,Response::HTTP_OK,
+            array('content-type' => 'text/html')
+        );
+        return $response;
     }
+      
+    /**
+     *  @Route("/notfound",name="notfound")
+     */
+    public function notfound(Request $request){
+        $content = <<< EOM
+        <html><head><title>Error</title></head>
+        <body><h1>ERROR</h1>
+        <p>Error 404</p>
+        </body></html>
+        EOM;
 
+        $response = new Response(
+            $content,Response::HTTP_NOT_FOUND,
+            array('content-type' => 'text/html')
+        );
+        return $response;
+    }
+    
+    /**
+     *  @Route("/error",name="error")
+     */
+    public function error(Request $request){
+        $content = <<< EOM
+        <html><head><title>Error</title></head>
+        <body><h1>ERROR</h1>
+        <p>Error 500</p>
+        </body></html>
+        EOM;
+
+        $response = new Response(
+            $content,Response::HTTP_INTERNAL_SERVER_ERROR,
+            array('content-type' => 'text/html')
+        );
+        return $response;
+    }
 }
