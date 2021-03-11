@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HelloController extends AbstractController
@@ -14,55 +16,16 @@ class HelloController extends AbstractController
      * @Route("/hello" , name="hello")
      */
 
-    public function index(Request $request)
+    public function index(Request $request,LoggerInterface $logger)
     {
-        $content = <<< EOM
-        <html><head><title>Hello</title></head>
-        <body><h1>Hello!</h1>
-        <p>this is Symphony sample page.</p>
-        </body></html>
-        EOM;
-
-        $response = new Response(
-            $content,Response::HTTP_OK,
-            array('content-type' => 'text/html')
+        $data = array(
+            'name'=>array('first'=>'Taro','second'=>'Yamada'),
+                     'age'=>36,'mail'=>'taro@yamada.kun'
         );
-        return $response;
+
+        $logger->info(serialize($data));
+        return new JsonResponse($data);
     }
       
-    /**
-     *  @Route("/notfound",name="notfound")
-     */
-    public function notfound(Request $request){
-        $content = <<< EOM
-        <html><head><title>Error</title></head>
-        <body><h1>ERROR</h1>
-        <p>Error 404</p>
-        </body></html>
-        EOM;
-
-        $response = new Response(
-            $content,Response::HTTP_NOT_FOUND,
-            array('content-type' => 'text/html')
-        );
-        return $response;
-    }
     
-    /**
-     *  @Route("/error",name="error")
-     */
-    public function error(Request $request){
-        $content = <<< EOM
-        <html><head><title>Error</title></head>
-        <body><h1>ERROR</h1>
-        <p>Error 500</p>
-        </body></html>
-        EOM;
-
-        $response = new Response(
-            $content,Response::HTTP_INTERNAL_SERVER_ERROR,
-            array('content-type' => 'text/html')
-        );
-        return $response;
-    }
 }
