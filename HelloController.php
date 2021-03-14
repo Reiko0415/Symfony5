@@ -7,95 +7,50 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
-//use Symfony\Component\Form\Extension\Core\Type\TextType;
-//use Symfony\Component\Form\Extension\Core\Type\EmailType;
-//use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-//use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class HelloController extends AbstractController
 {
    /**
     * @Route("/hello", name="hello")
     */
-   public function index(Request $request)
+   public function index(Request $request,SessionInterFace $session)
    {  
-        $person = new Person();
-        $person->setName('taro')
-            ->setAge(36)
-            ->setMail('taro@yamada.kun');
-
-
-        $form = $this->createFormBuilder($person)
-           ->add('name', TextType::class)
-           ->add('age', IntegerType::class)
-           ->add('mail', EmailType::class)
+        $data = new Mydata();
+        $form = $this->createFormBuilder($data)
+           ->add('data', TextType::class)
            ->add('save', SubmitType::class, ['label' => 'Click'])
            ->getForm();
 
 
         if ($request->getMethod() == 'POST'){
             $form->handleRequest($request);
-            $obj = $form->getData();
-            $msg = 'Name: ' . $obj->getName() . '<br>'
-                . 'Age: ' . $obj->getAge() . '<br>'
-                . 'Mail: ' . $obj->getMail();
-        } else {
-            $msg = 'お名前をどうぞ！';
-        }  
+            $data = $form->getData();
+            if($data->getData() == '!'){
+                $session->remove('data');
+            }else{
+                $session->set('data',$data->getData());
+            }
+        }
+
+
         return $this->render('hello/index.html.twig', [
            'title' => 'Hello',
-           'message' => $msg,
+           'data' => $session->get('data'),
            'form' => $form->createView(),
        ]);
    }
 }
 
+class MyData{
+    protected $data = '';
 
-// データクラス
-class Person
-{
-    protected $name;
-    protected $age;
-    protected $mail;
-
-
-    public function getName()
-    {
-        return $this->name;
-    }
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
+    public function getData(){
+        return $this->data;
     }
 
-
-    public function getAge()
-    {
-        return $this->age;
-    }
-    public function setAge($age)
-    {
-        $this->age = $age;
-        return $this;
-    }
-
-
-    public function getMail()
-    {
-        return $this->mail;
-    }
-    public function setMail($mail)
-    {
-        $this->mail = $mail;
-        return $this;
+    public function setData($data){
+        $this->data = $data;
     }
 }
-
-
-     
-
