@@ -4,11 +4,19 @@
 {% block title%}{{title}}{% endblock %}
 
 {% block body %}
-{% set flg = false %}
-{% set message = 'This is a sample message ' %}
-{% if flg %}
-    <p>{{message}}</p>
-{% else %}
-    <p>（＊　メッセージは非表示）</p>
-{% endif %}
+<p>テスト</p>
+<table>
+<tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Mail</th>
+</tr>
+{% for item in data %}
+<tr>
+    <td>{{item.name}}</td>
+    <td>{{item.age}}</td>
+    <td>{{item.mail}}</td>
+</tr>
+{% endfor %}
+</table>
 {% endblock %}
