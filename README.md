@@ -24,7 +24,17 @@
   <p>そのため
   php -S localhost:8001 -t public
   とする。</p>
+  
+   <li>マイグレーションの実行　php bin/console make:migration</li>
+   <p>In AbstractSQLiteDriver.php line 86:
+     An exception occurred in driver: could not find driver
+     In Exception.php line 18: 
+    could not find driver
+    In PDOConnection.php line 38: 
+    could not find driver となる</p>
+    <p>php.iniファイルのextension=pdo_sqliteの先頭の;を削除する</p> 
  </ol>
+
 
 
 
