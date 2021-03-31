@@ -21,9 +21,9 @@ class PersonRepository extends ServiceEntityRepository
 
     public function findByName($value){
         $arr = explode(',',$value);
-        return $this->createQueryBuilder('p')
-                ->where("p.name in (?1 , ?2)")
-                ->setParameters(array(1=>$arr[0],2=>$arr[1]))
+        $builder = $this->createQueryBuilder('p');
+        return $builder
+                ->where($builder->expr()->in('p.name', $arr))
                 ->getQuery()
                 ->getResult();
     }
