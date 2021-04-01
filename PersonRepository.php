@@ -41,6 +41,13 @@ class PersonRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findAllwidthSort(){
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.age','DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Person[] Returns an array of Person objects
     //  */

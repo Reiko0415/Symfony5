@@ -42,6 +42,9 @@ class HelloController extends AbstractController
          ->add('save',SubmitType::class,array('label'=> 'Click'))
          ->getForm();
 
+      $repository = $this->getDoctrine()
+         ->getRepository(Person::class);
+
       if($request->getMethod() == 'POST'){
          $form->handleRequest($request);
          $findstr = $form->getData()->getFind();
@@ -49,7 +52,7 @@ class HelloController extends AbstractController
             ->getRepository(Person::class);
          $result = $repository->findByOrMail($findstr);
       }else{
-         $result = null;
+         $result = $repository->findAllwidthSort();
       }
       return $this->render('hello/find.html.twig',[
          'title' => 'Hello',
