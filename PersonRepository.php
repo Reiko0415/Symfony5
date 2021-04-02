@@ -44,6 +44,8 @@ class PersonRepository extends ServiceEntityRepository
     public function findAllwidthSort(){
         return $this->createQueryBuilder('p')
             ->orderBy('p.age','DESC')
+            ->setFirstResult(0)
+            ->setMaxResults(3)
             ->getQuery()
             ->getResult();
     }
