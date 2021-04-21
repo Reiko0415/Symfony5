@@ -29,7 +29,7 @@ class HelloController extends AbstractController
    {
       $finder = new Finder();
 
-      $finder->files()->depth('<=2')->name('*.yaml')->in('../../');
+      $finder->files()->depth('<=0')->notName('*.lock')->in('../');
 
       return $this->render('hello/index.html.twig', [
            'title' => 'Hello',
