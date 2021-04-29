@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\PersonType;
 use App\Entity\Person;
+use App\Form\Hellotype;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,27 +29,27 @@ class HelloController extends AbstractController
    /**
     * @Route("/hello", name="hello")
     */
-   public function index(Request $request)
-   {
-      $fileSystem = new Filesystem();
-      $temp = __DIR__ . '/temp';
-
-      try{
-         if(!$fileSystem->exists($temp)){
-            $fileSystem->mkdir($temp);
-         }
-         $fileSystem->appendToFile($temp . '/temp.txt'," Write Text !!");
-         $fileSystem->appendToFile($temp . '/temp.txt',date("Y-m-d H:i:s"));
-         $fileSystem->appendToFile($temp . '/temp.txt',"\n");
-      }catch(IOExceptionInterface $e){
-         echo "Error " . $e->getPath();
-      }
-
-      return $this->render('hello/index.html.twig', [
-           'title' => 'Hello',
-           'message' => 'get file/folder',
-       ]);
-   }
+    public function index(Request $request)
+    {   
+        $form = $this->createForm(HelloType::class, null);
+        $form->handleRequest($request);
+    
+    
+        if ($request->getMethod() == 'POST'){
+            $this->addFlash('info.mail', 'mail:' . $form->getData()['mail']);
+            $msg = 'Hello, ' . $form->getData()['name'] . '!!';
+        } else {
+            $msg = 'Send Form';
+        }
+        
+        return $this->render('hello/index.html.twig', [
+            'title' => 'Hello',
+            'message' => $msg,
+            'form' => $form->createView(),
+        ]);
+    }
+    
+    
 
    /**
     * @Route("/find", name="find")
