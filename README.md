@@ -30,6 +30,11 @@
    <p>In Exception.php line 18:     could not find driver</p>
    <p>In PDOConnection.php line 38:     could not find driver となる</p>
    <p>そのためphp.iniファイルのextension=pdo_sqliteの先頭の;を削除する</p> 
+   
+   <li>フラッシュメッセージを利用する</li>
+   <p>HomeController.phpに</p>
+   <p>uuse App\Form\Hellotype;を追加/</p>
+   <p>※　Could not load type "App\Controller\HelloType": class does not exist.となるため</p>
  </ol>
 
 
