@@ -33,7 +33,7 @@
    
    <li>フラッシュメッセージを利用する</li>
    <p>HomeController.phpに</p>
-   <p>uuse App\Form\Hellotype;を追加/</p>
+   <p>use App\Form\Hellotype;を追加</p>
    <p>※　Could not load type "App\Controller\HelloType": class does not exist.となるため</p>
  </ol>
 
