@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Form\PersonType;
 use App\Entity\Person;
-use App\Form\Hellotype;
+use App\Form\HelloType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,30 +24,42 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 class HelloController extends AbstractController
 {
    /**
-    * @Route("/hello", name="hello")
-    */
-    public function index(Request $request)
-    {   
-        $form = $this->createForm(HelloType::class, null);
-        $form->handleRequest($request);
-    
-    
-        if ($request->getMethod() == 'POST'){
-            $this->addFlash('info.mail', 'mail:' . $form->getData()['mail']);
-            $msg = 'Hello, ' . $form->getData()['name'] . '!!';
-        } else {
-            $msg = 'Send Form';
-        }
-        
-        return $this->render('hello/index.html.twig', [
-            'title' => 'Hello',
-            'message' => $msg,
-            'form' => $form->createView(),
-        ]);
+ * @Route("/hello", name="hello")
+ */
+public function index(Request $request, SessionInterface $session)
+{   
+    $formobj = new HelloForm();
+    $form = $this->createForm(HelloType::class, $formobj);
+    $form->handleRequest($request);
+
+
+    if ($request->getMethod() == 'POST'){
+        $formobj = $form->getData();
+        $session->getFlashBag()->add('info.mail', $formobj);
+        $msg = 'Hello, ' . $formobj->getName() . '!!';
+    } else {
+        $msg = 'Send Form';
     }
+    
+    return $this->render('hello/index.html.twig', [
+        'title' => 'Hello',
+        'message' => $msg,
+        'bag' => $session->getFlashBag(),
+        'form' => $form->createView(),
+    ]);
+}
+   /**
+    * @Route("/clear", name="clear")
+    */
+    public function clear(Request $request,SessionInterface $session){
+      $session->getFlashBag()->clear();
+      return $this->redirect('/hello');
+   }
     
     
 
@@ -196,3 +208,27 @@ class HelloController extends AbstractController
       }
    }
 
+   class HelloForm{
+      private $name;
+      private $mail;
+
+      public function getName(){
+         return $this->name;
+      }
+
+      public function setName($name){
+         $this->name = $name;
+      }
+
+      public function getMail(){
+         return $this->mail;
+      }
+
+      public function setMail($mail){
+         $this->mail = $mail;
+      }
+
+      public function __toString(){
+         return '** ' . $this->name . ' [' . $this->mail .'] ***';
+      }
+   }
