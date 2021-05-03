@@ -35,7 +35,14 @@
    <p>HomeController.phpに</p>
    <p>use App\Form\HelloType;を追加</p>
    <p>※　Could not load type "App\Controller\HelloType": class does not exist.となるため</p>
- </ol>
+
+   <li>登録用RegisterControllerの作成</li>
+   <p>services.ymlに下記の３行を追加</p>
+   <p>security:</p>
+   <p>encoders:</p>
+   <p>App\Entity\User: bcrypt</p>
+   <p>※No encoder has been configured for account "App\Entity\User"と表示されるため</p>
+</ol>
 
 
 
