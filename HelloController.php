@@ -26,31 +26,23 @@ use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
 class HelloController extends AbstractController
 {
    /**
  * @Route("/hello", name="hello")
  */
-public function index(Request $request, SessionInterface $session)
+public function index(Request $request)
 {   
-    $formobj = new HelloForm();
-    $form = $this->createForm(HelloType::class, $formobj);
-    $form->handleRequest($request);
-
-
-    if ($request->getMethod() == 'POST'){
-        $formobj = $form->getData();
-        $session->getFlashBag()->add('info.mail', $formobj);
-        $msg = 'Hello, ' . $formobj->getName() . '!!';
-    } else {
-        $msg = 'Send Form';
-    }
+   if (!$this->getUser()->isActive()){
+      throw new AccessDeniedException('Unable to access!');
+   }
     
     return $this->render('hello/index.html.twig', [
         'title' => 'Hello',
-        'message' => $msg,
-        'bag' => $session->getFlashBag(),
-        'form' => $form->createView(),
+        'message' => 'User Information',
+        'user' => $this->getUser(),
     ]);
 }
    /**

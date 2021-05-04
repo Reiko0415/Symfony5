@@ -21,9 +21,7 @@ class RegisterController extends AbstractController
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
 
-
         $form->handleRequest($request);
-
 
         if ($request->getMethod() == 'POST'){
             if ($form->isValid()) {
@@ -33,7 +31,7 @@ class RegisterController extends AbstractController
                 $manager = $this->getDoctrine()->getManager();
                 $manager->persist($user);
                 $manager->flush();
-                return $this->redirectToRoute('register');
+                return $this->redirectToRoute('login');
             }
         }
 
