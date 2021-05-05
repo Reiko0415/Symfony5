@@ -2,8 +2,29 @@
 
 namespace App\Service;
 
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NoResultException;
+
 class MyService
 {
+    private $manager;
+
+    public function __construct(EntityManagerInterface $manager)
+    {
+        $this->manager = $manager;
+    }
+
+    public function getPerson($id = 1)
+    {
+        $query = $this->manager->createQuery(
+            "SELECT p FROM App\Entity\Person p Where p.id = ($id)");
+        try{
+            return $query->getSingleResult();
+        } catch(NoResultException $e){
+            return null;
+        }
+    }
+
     public function getMessage()
     {
         $msgs = [
