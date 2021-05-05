@@ -4,23 +4,5 @@
 {% block title%}{{title}}{% endblock %}
 
 {% block body %}
-<style>
-.flash-notice {
-    color:red;
-    font-size:16pt;
-    font-weight:bold;
-}
-</style>
-<h2>Hello</h2>
-<ol>
-{% for message in bag.peek('info.mail') %}
-    <div class="flash-notice">
-        {{ message.name }}
-    </div>
-{% endfor %}
-</ol>
-<p>{{ message }}</p>
-{{ form_start(form) }}
-{{ form_widget(form) }}
-{{ form_end(form) }}
+<h2>{{message}}</h2>
 {% endblock %}

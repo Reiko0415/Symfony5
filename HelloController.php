@@ -28,21 +28,19 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+use App\Service\MyService;
+
 class HelloController extends AbstractController
 {
    /**
  * @Route("/hello", name="hello")
  */
-public function index(Request $request)
+public function index(Request $request,MyService $service)
 {   
-   if (!$this->getUser()->isActive()){
-      throw new AccessDeniedException('Unable to access!');
-   }
     
     return $this->render('hello/index.html.twig', [
         'title' => 'Hello',
-        'message' => 'User Information',
-        'user' => $this->getUser(),
+        'message' => $service->getMessage(),
     ]);
 }
    /**
