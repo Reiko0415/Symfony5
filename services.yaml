@@ -8,6 +8,7 @@ security:
         App\Entity\User: bcrypt
 
 parameters:
+    entity_type: 'App\Entity\User'
 
 services:
     # default configuration for services in *this* file
@@ -33,3 +34,7 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Service\MyService:
+        arguments:
+            $entityType: '%entity_type%'
