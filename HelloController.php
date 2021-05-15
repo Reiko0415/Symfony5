@@ -32,7 +32,19 @@ use App\Service\MyService;
 
 class HelloController extends AbstractController
 {
-   /**
+
+/**
+ * @Route("/",name="main")
+ */
+public function main(Request $request,int $id=1,MyService $servie)
+{
+   return $this->render('hello/main.html.twig',[
+      'title' => 'Hello',
+      'number' => 1234500,
+   ]);
+}
+
+/**
  * @Route("/hello/{id}", name="hello")
  */
 public function index(Request $request,int $id=1,MyService $service)
